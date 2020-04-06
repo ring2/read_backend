@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: wqq123
+    url: jdbc:mysql://localhost:3306/read?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+  devtools:
+    restart:
+      enabled: true
+server:
+  port: 8081
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+logging:
+  level:
+    com:
+      lz:
+        read:
+          dao: debug
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:com/lz/read/mapperxml/*.xml

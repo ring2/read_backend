@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lz.read.dao.BookMapper">
+    <resultMap id="BaseResultMap" type="com.lz.read.pojo.Book">
+        <!--@mbg.generated generated on Wed Apr 01 23:55:30 CST 2020.-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="bookname" jdbcType="VARCHAR" property="bookname"/>
+        <result column="pictureurl" jdbcType="VARCHAR" property="pictureurl"/>
+        <result column="bookstate" jdbcType="CHAR" property="bookstate"/>
+        <result column="bookauthor" jdbcType="VARCHAR" property="bookauthor"/>
+        <result column="bookreadnum" jdbcType="INTEGER" property="bookreadnum"/>
+        <result column="bookcredit" jdbcType="INTEGER" property="bookcredit"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated generated on Wed Apr 01 23:55:30 CST 2020.-->
+        id, bookname, pictureurl, bookstate, bookauthor, bookreadnum, bookcredit
+    </sql>
+    <select id="selBookWithBookType" resultType="com.lz.read.pojo.vo.BookVo">
+        select book.*,booktype.bt_name btname from book,booktype
+        where book.book_type_id = booktype.id
+        <if test="bookname != null and bookname != ''">
+            and bookname like concat ('%',#{bookname},'%')
+        </if>
+    </select>
+</mapper>
