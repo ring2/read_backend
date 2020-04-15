@@ -7,7 +7,9 @@ import com.github.pagehelper.PageInfo;
 import com.lz.read.common.RestResult;
 import com.lz.read.pojo.Booktoken;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
+
 import com.lz.read.dao.BooktokenMapper;
 import com.lz.read.service.BooktokenService;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,39 +19,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-    * @author :     lz
-    * @date :       2020/4/1 23:55
-    * description:  
+ * @author :     lz
+ * @date :       2020/4/1 23:55
+ * description:
  **/
-  
+
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class BooktokenServiceImpl implements BooktokenService{
+public class BooktokenServiceImpl implements BooktokenService {
 
     @Resource
     private BooktokenMapper booktokenMapper;
 
 
     @Override
-    public RestResult listBookToken(String tokenName,int pageNum,int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public RestResult listBookToken(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         PageInfo pageInfo = null;
         List<Booktoken> booktokens;
-        if (StrUtil.isNotEmpty(tokenName)){
-            Example example = new Example(Booktoken.class);
-            example.createCriteria().andLike("btnName","%"+tokenName+"%");
-             booktokens = booktokenMapper.selectByExample(example);
-             pageInfo = new PageInfo(booktokens);
-        }else {
-            booktokens = booktokenMapper.selectAll();
-            pageInfo = new PageInfo(booktokens);
-        }
+        booktokens = booktokenMapper.selectAll();
+        pageInfo = new PageInfo(booktokens);
         return RestResult.success(pageInfo);
     }
 
     @Override
     public RestResult updateBookToken(Booktoken booktoken) {
-        if (ObjectUtil.isNotEmpty(booktoken)){
+        if (ObjectUtil.isNotEmpty(booktoken)) {
             int i = booktokenMapper.updateByPrimaryKeySelective(booktoken);
             if (i > 0)
                 return RestResult.success();
@@ -61,7 +56,7 @@ public class BooktokenServiceImpl implements BooktokenService{
 
     @Override
     public RestResult delBookToken(Integer id) {
-        if (ObjectUtil.isNotEmpty(id)){
+        if (ObjectUtil.isNotEmpty(id)) {
             int i = booktokenMapper.deleteByPrimaryKey(id);
             if (i > 0)
                 return RestResult.success();
@@ -73,7 +68,7 @@ public class BooktokenServiceImpl implements BooktokenService{
 
     @Override
     public RestResult addBookToken(Booktoken booktoken) {
-        if (ObjectUtil.isNotEmpty(booktoken)){
+        if (ObjectUtil.isNotEmpty(booktoken)) {
             int i = booktokenMapper.insertSelective(booktoken);
             if (i > 0)
                 return RestResult.success();

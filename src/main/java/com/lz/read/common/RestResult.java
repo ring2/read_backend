@@ -28,6 +28,7 @@ public class RestResult<T> {
 
     public RestResult(String message) {
         this.message = message;
+        this.statusCode = CommonStatus.FAILURE.getStatusCode();
     }
 
     public RestResult(CommonStatus commonStatus) {

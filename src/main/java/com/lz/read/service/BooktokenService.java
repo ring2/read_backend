@@ -15,7 +15,7 @@ public interface BooktokenService {
      * @return 对书卷的管理
      */
 
-    public RestResult listBookToken(String tokenName,int pageNum,int pageSize);
+    public RestResult listBookToken(int pageNum,int pageSize);
 
     public RestResult updateBookToken(Booktoken booktoken);
 

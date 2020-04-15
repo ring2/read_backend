@@ -67,4 +67,16 @@ public class Book {
      */
     @Column(name = "book_url")
     private String bookUrl;
+
+    /**
+     * 是否收费
+     */
+    @Column(name = "is_charge")
+    private Boolean isCharge;
+
+    /**
+     * 书卷id
+     */
+    @Column(name = "booktoken_id")
+    private Integer bookTokenId;
 }

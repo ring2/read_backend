@@ -1,12 +1,18 @@
 package com.lz.read.controller;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.lz.read.common.RestResult;
+import com.lz.read.dao.BookresourceMapper;
 import com.lz.read.pojo.Book;
+import com.lz.read.pojo.Bookresource;
 import com.lz.read.pojo.Booktype;
+import com.lz.read.pojo.dto.BookDto;
 import com.lz.read.service.BookService;
 import com.lz.read.service.BooktypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @author :     lz
@@ -23,9 +29,17 @@ public class BookController {
     @Autowired
     BooktypeService booktypeService;
 
+    @Resource
+    BookresourceMapper bookresourceMapper;
+
     @GetMapping("/list_no_type")
     public RestResult getNoTypeBook(int pageNum, int pageSize) {
         return bookService.getNoTypeBookList(pageNum, pageSize);
+    }
+
+    @GetMapping("/{id}")
+    public RestResult getBookById(@PathVariable Integer id) {
+        return bookService.selBookById(id);
     }
 
     @PostMapping("/book_type")
@@ -59,7 +73,7 @@ public class BookController {
     }
 
     @PutMapping
-    public RestResult update(@RequestBody Book book) {
+    public RestResult update(@RequestBody BookDto book) {
         return bookService.updateBook(book);
     }
 
@@ -73,8 +87,14 @@ public class BookController {
         return bookService.bookShelves(id, type);
     }
 
-    @GetMapping("/book_type/{typeId}/{pageNum}/{pageSize}")
-    public RestResult getBooksByType(@PathVariable Integer typeId, @PathVariable int pageNum, @PathVariable int pageSize) {
-        return bookService.getBooksByType(typeId, pageNum, pageSize);
+    @GetMapping("/book_by_type")
+    public RestResult getBooksByType(@RequestParam Integer bookTypeId, @RequestParam String isCharge,
+                                     @RequestParam int pageNum, @RequestParam int pageSize) {
+        return bookService.getBooksByType(bookTypeId, isCharge, pageNum, pageSize);
+    }
+
+    @PostMapping("/add_book")
+    public RestResult addBook(@RequestBody BookDto bookDto) {
+        return bookService.addBook(bookDto);
     }
 }

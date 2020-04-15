@@ -14,11 +14,6 @@ public class Bookresource {
     @GeneratedValue(generator = "JDBC")
     private Integer id;
 
-    /**
-     * 书券编号
-     */
-    @Column(name = "rs_booktokenid")
-    private Integer rsBooktokenid;
 
     /**
      * 资源名称
@@ -44,9 +39,10 @@ public class Bookresource {
     @Column(name = "rs_type")
     private String rsType;
 
+
     /**
-     * 是否收费：0—不收费；1—收费
+     * 图书id
      */
-    @Column(name = "rs_charge")
-    private Byte rsCharge;
+    @Column(name = "book_id")
+    private Integer bookId;
 }

@@ -19,7 +19,7 @@ public class Booktoken {
      * 书卷名称
      */
     @Column(name = "btn_name")
-    private Integer btnName;
+    private String btnName;
 
 
     /**

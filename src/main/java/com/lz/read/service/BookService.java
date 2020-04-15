@@ -2,6 +2,7 @@ package com.lz.read.service;
 
 import com.lz.read.common.RestResult;
 import com.lz.read.pojo.Book;
+import com.lz.read.pojo.dto.BookDto;
 
 /**
  * @author :     lz
@@ -16,7 +17,9 @@ public interface BookService {
      * @param book
      * @return 修改书籍信息、分类
      */
-    RestResult updateBook(Book book);
+    RestResult updateBook(BookDto book);
+
+    RestResult selBookById(Integer id);
 
     /**
      * 图书列表
@@ -40,7 +43,13 @@ public interface BookService {
     /**
      * @return 返回通过类别id获取图书列表
      */
-    RestResult getBooksByType(Integer bookType, int pageNum, int pageSize);
+    RestResult getBooksByType(Integer bookType, String isCharge, int pageNum, int pageSize);
 
+
+    RestResult selRankForRead();
+
+    Integer insertBook(Book book);
+
+    RestResult addBook(BookDto bookDto);
 
 }

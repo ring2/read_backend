@@ -18,23 +18,23 @@ public class BookTokenController {
     @Autowired
     BooktokenService booktokenService;
 
-    @GetMapping("/list")
-    public RestResult get(String tokenName, int pageNum, int pageSize) {
-        return booktokenService.listBookToken(tokenName, pageNum, pageSize);
+    @GetMapping("/list/{pageNum}/{pageSize}")
+    public RestResult get(@PathVariable int pageNum,@PathVariable int pageSize) {
+        return booktokenService.listBookToken( pageNum, pageSize);
     }
 
-    @PutMapping()
-    public RestResult update(Booktoken booktoken) {
+    @PutMapping
+    public RestResult update(@RequestBody Booktoken booktoken) {
         return booktokenService.updateBookToken(booktoken);
     }
 
-    @DeleteMapping()
-    public RestResult del(Integer id) {
+    @DeleteMapping("/{id}")
+    public RestResult del(@PathVariable Integer id) {
         return booktokenService.delBookToken(id);
     }
 
-    @PostMapping()
-    public RestResult cre(Booktoken booktoken) {
+    @PostMapping
+    public RestResult cre(@RequestBody Booktoken booktoken) {
         return booktokenService.addBookToken(booktoken);
     }
 }
