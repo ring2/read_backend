@@ -99,7 +99,12 @@ public class ExpertServiceImpl implements ExpertService {
     @Override
     public RestResult listExpert(Integer type,int pageNum, int pageSize) {
         Example example = new Example(Expert.class);
-        example.createCriteria().andEqualTo("isReview",type);
+        if (type == 1) {
+            example.createCriteria().andNotEqualTo("isReview",3);
+        }else{
+            example.createCriteria().andEqualTo("isReview",type);
+        }
+
         List<Experttype> experttypes = experttypeMapper.selectAll();
         PageHelper.startPage(pageNum,pageSize);
         List<Expert> experts = expertMapper.selectByExample(example);
@@ -124,18 +129,13 @@ public class ExpertServiceImpl implements ExpertService {
     }
 
     @Override
-    public RestResult registerExpert(String username, String password,String exName,String identity) {
+    public RestResult registerExpert(Expert expert) {
         Example example = new Example(Expert.class);
-        example.createCriteria().andEqualTo("exUsername",username);
+        example.createCriteria().andEqualTo("exUsername",expert.getExUsername());
         List<Expert> experts = expertMapper.selectByExample(example);
         if (experts.size() > 0){
             return RestResult.failureOfRepeatName();
         }
-        Expert expert = new Expert();
-        expert.setExUsername(username);
-        expert.setExPwd(password);
-        expert.setExName(exName);
-        expert.setExIdentity(identity);
         int i = expertMapper.insertSelective(expert);
         if (i > 0){
             return RestResult.success();

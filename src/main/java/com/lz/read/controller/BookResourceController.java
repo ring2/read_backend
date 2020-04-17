@@ -93,6 +93,7 @@ public class BookResourceController {
         byte[] b = new byte[bis.available()];
         while ((len = bis.read(b)) != -1) {
             sb.append(new String(b, 0, len));
+            sb.append("</br>");
         }
         return sb.toString();
     }

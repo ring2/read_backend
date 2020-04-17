@@ -23,7 +23,7 @@ public interface ExpertService{
 
     public RestResult listExpert(Integer type,int pageNum,int pageSize);
 
-    public RestResult registerExpert(String username,String password,String exName,String identity);
+    public RestResult registerExpert(Expert expert);
 
 
 

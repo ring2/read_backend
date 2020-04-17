@@ -21,8 +21,14 @@ public class Answer {
     private Integer ansReaderid;
 
     /**
-     * 选项编号
+     * 问题编号
      */
-    @Column(name = "ans_selectid")
-    private Integer ansSelectid;
+    @Column(name = "ans_questionid")
+    private Integer ansQuestionId;
+
+    /**
+     * 回答内容
+     */
+    @Column(name = "ans_content")
+    private String anContent;
 }

@@ -59,4 +59,10 @@ public class RecommendServiceImpl implements RecommendService {
     public Recommend selRecommendById(Integer id) {
         return recommendMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public RestResult del(Integer id) {
+        recommendMapper.deleteByPrimaryKey(id);
+        return RestResult.success();
+    }
 }

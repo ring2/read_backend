@@ -15,6 +15,7 @@ import com.lz.read.service.AnnouncementService;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class AnnouncementServiceImpl implements AnnouncementService {
     @Override
     public RestResult addAnnouncement(Announcement announcement) {
         if (ObjectUtil.isNotEmpty(announcement)) {
+            announcement.setAnnoPublishtime(new Date());
             int i = announcementMapper.insertSelective(announcement);
             if (i > 0) {
                 return RestResult.success();

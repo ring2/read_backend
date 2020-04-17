@@ -124,12 +124,14 @@ public class BookServiceImpl implements BookService {
         Boolean charge = false;
         PageHelper.startPage(pageNum, pageSize);
         Example example = new Example(Book.class);
+        Example.Criteria criteria = example.createCriteria();
         if (StrUtil.isNotEmpty(isCharge)){
             if (isCharge.equals("收费")){
                 charge = true;
             }
+            criteria.andEqualTo("isCharge", charge);
         }
-        example.createCriteria().andEqualTo("bookTypeId", bookTypeId).andEqualTo("isCharge",charge);
+        criteria.andEqualTo("bookTypeId", bookTypeId);
         PageInfo pageInfo = new PageInfo(bookMapper.selectByExample(example));
         return RestResult.success(pageInfo);
     }

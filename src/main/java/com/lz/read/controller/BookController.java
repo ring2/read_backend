@@ -88,7 +88,7 @@ public class BookController {
     }
 
     @GetMapping("/book_by_type")
-    public RestResult getBooksByType(@RequestParam Integer bookTypeId, @RequestParam String isCharge,
+    public RestResult getBooksByType(@RequestParam Integer bookTypeId, @RequestParam(required = false) String isCharge,
                                      @RequestParam int pageNum, @RequestParam int pageSize) {
         return bookService.getBooksByType(bookTypeId, isCharge, pageNum, pageSize);
     }

@@ -22,10 +22,6 @@ public class RegisterController {
 
     @PostMapping
     public RestResult cre(@RequestBody Expert expert) {
-        String exUsername = expert.getExUsername();
-        String exName = expert.getExName();
-        String exPwd = expert.getExPwd();
-        String identity = expert.getExIdentity();
-        return expertService.registerExpert(exUsername, exPwd, exName, identity);
+        return expertService.registerExpert(expert);
     }
 }

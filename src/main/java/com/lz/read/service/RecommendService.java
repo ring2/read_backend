@@ -22,4 +22,6 @@ public interface RecommendService{
     public RestResult updateRecommend(Recommend recommend);
 
     public Recommend selRecommendById(Integer id);
+
+    RestResult del(Integer id);
 }

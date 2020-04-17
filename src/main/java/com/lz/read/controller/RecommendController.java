@@ -30,5 +30,10 @@ public class RecommendController {
         return recommendService.updateRecommend(recommend);
     }
 
+    @DeleteMapping("/{id}")
+    public RestResult deleteRecommend(@PathVariable Integer id) {
+        return recommendService.del(id);
+    }
+
 
 }
