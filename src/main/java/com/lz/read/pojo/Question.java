@@ -43,4 +43,10 @@ public class Question {
      */
     @Column(name = "que_topicid")
     private Integer queTopicid;
+
+    /**
+     * 问题类型
+     */
+    @Column(name = "que_type")
+    private String queType;
 }

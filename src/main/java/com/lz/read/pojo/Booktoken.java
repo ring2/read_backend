@@ -41,6 +41,12 @@ public class Booktoken {
     private Date btnTime;
 
     /**
+     * 书券兑换日期
+     */
+    @Column(name = "btn_begin")
+    private Date btnBegin;
+
+    /**
      * 书券数量
      */
     @Column(name = "btn_num")

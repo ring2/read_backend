@@ -11,4 +11,5 @@ import lombok.Data;
 public class InvestigateDto {
     private String title;
     private String question;
+    private String questionType;
 }

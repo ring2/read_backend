@@ -56,4 +56,10 @@ public class Announcement {
      */
     @Column(name = "anno_deletetime")
     private Date annoDeletetime;
+
+    /**
+     * 附件url
+     */
+    @Column(name = "attach_url")
+    private String attachUrl;
 }

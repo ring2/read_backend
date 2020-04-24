@@ -9,6 +9,7 @@ import com.lz.read.pojo.Answer;
 import com.lz.read.pojo.Paper;
 import com.lz.read.pojo.Question;
 import com.lz.read.pojo.dto.InvestigateDto;
+import com.lz.read.pojo.vo.AnswerSituationVo;
 import com.lz.read.pojo.vo.AnswerVo;
 import com.lz.read.pojo.vo.ContentVo;
 import com.lz.read.pojo.vo.UserAnswerVo;
@@ -55,6 +56,7 @@ public class InvestigateServiceImpl implements InvestigateService {
         Question question = new Question();
         question.setQueTitle(investigateDto.getTitle());
         question.setQueDirection(investigateDto.getQuestion());
+        question.setQueType(investigateDto.getQuestionType());
         question.setQuePaperid(paper1.getId());
         questionMapper.insertSelective(question);
         return RestResult.success();
@@ -84,5 +86,11 @@ public class InvestigateServiceImpl implements InvestigateService {
         });
         userAnswerVo.setData(list);
         return RestResult.success(userAnswerVo);
+    }
+
+    @Override
+    public RestResult<List<AnswerSituationVo>> getSituation1() {
+        List<AnswerSituationVo> answerSituationVos = answerMapper.selAnswerSituation();
+        return RestResult.success(answerSituationVos);
     }
 }

@@ -31,4 +31,12 @@ public class Answer {
      */
     @Column(name = "ans_content")
     private String anContent;
+
+
+    /**
+     * 分值
+     */
+    @Column(name = "ans_score")
+    private String ansScore;
+
 }

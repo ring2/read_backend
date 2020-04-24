@@ -62,16 +62,16 @@ public class AnnouncementServiceImpl implements AnnouncementService {
 
     @Override
     public RestResult listAnnouncement(String title, int pageNum, int pageSize) {
-        if (title.equals(" ")){
+        if (title.equals(" ")) {
             title = null;
         }
-        if (StrUtil.isNotEmpty(title)) {
-            PageHelper.startPage(pageNum, pageSize);
-            Example example = new Example(Announcement.class);
-            example.createCriteria().andEqualTo("annoDelete",0).andLike("annoTitle", "%" + title + "%");
-        }
         Example example = new Example(Announcement.class);
-        example.createCriteria().andEqualTo("annoDelete",0);
+        PageHelper.startPage(pageNum, pageSize);
+        if (StrUtil.isNotEmpty(title)) {
+            example.createCriteria().andEqualTo("annoDelete", 0).andLike("annoTitle", "%" + title + "%");
+        } else {
+            example.createCriteria().andEqualTo("annoDelete", 0);
+        }
         List<Announcement> announcements = announcementMapper.selectByExample(example);
         PageInfo pageInfo = new PageInfo(announcements);
         return RestResult.success(pageInfo);

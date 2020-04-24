@@ -2,6 +2,7 @@ package com.lz.read.controller;
 
 import com.lz.read.common.RestResult;
 import com.lz.read.pojo.dto.InvestigateDto;
+import com.lz.read.pojo.vo.AnswerSituationVo;
 import com.lz.read.pojo.vo.UserAnswerVo;
 import com.lz.read.service.InvestigateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,11 @@ public class InvestigateController {
     @GetMapping("/situation")
     public RestResult<UserAnswerVo> getSituation(){
         return investigateService.getSituation();
+    }
+
+    //单选题
+    @GetMapping("/situation1")
+    public RestResult<List<AnswerSituationVo>> getSituation1(){
+        return investigateService.getSituation1();
     }
 }

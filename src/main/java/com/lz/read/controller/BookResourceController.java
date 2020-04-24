@@ -98,7 +98,4 @@ public class BookResourceController {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-
-    }
 }
