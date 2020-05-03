@@ -8,13 +8,18 @@ import com.lz.read.dao.RecommendMapper;
 import com.lz.read.dao.UpdateRecommendMsgMapper;
 import com.lz.read.pojo.Recommend;
 import com.lz.read.pojo.UpdateRecommendMsg;
+import com.lz.read.pojo.vo.ReviewedVO;
 import com.lz.read.service.RecommendService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author :     lz
@@ -35,13 +40,10 @@ public class RecommendServiceImpl implements RecommendService {
     @Override
     public RestResult getRecommendBook(Byte status, int pageNum, int pageSize) {
         if (ObjectUtil.isNotEmpty(status)) {
-            Example example = new Example(Recommend.class);
-            example.createCriteria().andEqualTo("reStatus", status);
             PageHelper.startPage(pageNum, pageSize);
-            List<Recommend> recommends = recommendMapper.selectByExample(example);
-            PageInfo pageInfo = new PageInfo(recommends);
+            List<ReviewedVO> reviewed = recommendMapper.getReviewed();
+            PageInfo pageInfo = new PageInfo(reviewed);
             return RestResult.success(pageInfo);
-
         }
         return RestResult.failureOfParam();
     }
@@ -77,5 +79,22 @@ public class RecommendServiceImpl implements RecommendService {
     public RestResult del(Integer id) {
         recommendMapper.deleteByPrimaryKey(id);
         return RestResult.success();
+    }
+
+    @Override
+    public RestResult getReviewedBooks(Integer expertId) {
+        List<ReviewedVO> noPassBooks = new ArrayList<>();
+        List<ReviewedVO> passBooks = new ArrayList<>();
+        List<ReviewedVO> reviewedBooks = recommendMapper.getReviewedBooks(expertId);
+        noPassBooks = reviewedBooks.stream().filter(book ->
+                book.getReResult() == 0
+        ).collect(Collectors.toList());
+        passBooks = reviewedBooks.stream().filter(book ->
+                book.getReResult() == 1
+        ).collect(Collectors.toList());
+        Map<String,List> data = new HashMap<>();
+        data.put("noPassBooks",noPassBooks);
+        data.put("passBooks",passBooks);
+        return RestResult.success(data);
     }
 }

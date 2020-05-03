@@ -61,4 +61,12 @@ public class Expert {
      */
     @Column(name = "is_review")
     private Byte isReview;
+
+    /**
+     * 擅长的图书类别ids
+     */
+    @Column(name = "book_types")
+    private String bookTypes;
+
+
 }

@@ -24,4 +24,6 @@ public interface RecommendService{
     public Recommend selRecommendById(Integer id);
 
     RestResult del(Integer id);
+
+    RestResult getReviewedBooks(Integer expertId);
 }

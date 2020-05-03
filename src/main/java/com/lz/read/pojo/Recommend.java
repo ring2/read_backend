@@ -50,4 +50,9 @@ public class Recommend {
     @Column(name = "re_opinion")
     private String reOpinion;
 
+    /**
+     * 推荐历有
+     */
+    @Column(name = "re_reason")
+    private String reReason;
 }

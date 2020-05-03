@@ -11,7 +11,7 @@
  Target Server Version : 50712
  File Encoding         : 65001
 
- Date: 24/04/2020 10:53:25
+ Date: 03/05/2020 16:06:29
 */
 
 SET NAMES utf8mb4;
@@ -103,25 +103,28 @@ CREATE TABLE `book`  (
   `book_url` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '观看图书地址',
   `booktoken_id` int(11) NULL DEFAULT NULL COMMENT '书卷id',
   `is_charge` tinyint(4) NULL DEFAULT NULL COMMENT '是否收费,0 否， 1 收费',
+  `book_press` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '出版社',
+  `press_time` datetime(0) NULL DEFAULT NULL COMMENT '出版日期',
+  `short_intro` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '简介',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = 'book表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES (1, '格林童话', 'http://url.picture', '说书', '格林', 23, 1, 1, 2, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (2, '安徒生童话', 'http://url.picture', '听书', '安徒生', 666, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (3, 'xx', 'xx', 'xx', 'xx', 22, 112, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (4, '安徒生童话', 'http://url.picture', '听书', '安徒生', 66, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (6, '安徒生童话12', 'http://url.picture', '听书', '安徒生', 3, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (7, '安徒生童话123', 'http://url.picture', '听书', '安徒生', 4, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (8, '安徒生童话1234', 'http://url.picture', '听书', '安徒生', 22, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (9, '安徒生童话12345', 'http://url.picture', '听书', '安徒生', 32, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (10, '安徒生童话12345', 'http://url.picture', '听书', '安徒生', 33, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (11, '安徒生童话123456', 'http://url.picture', '听书', '安徒生', 3, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (12, '安徒生童话1234567', 'http://url.picture', '听书', '安徒生', 33, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0);
-INSERT INTO `book` VALUES (13, 'test1', NULL, NULL, 'wqq', 14, NULL, NULL, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', 1, 1);
-INSERT INTO `book` VALUES (14, 'tesqwqq', NULL, NULL, 'wqqw', NULL, NULL, NULL, 2, 'http://localhost:8081/bookResource/view/?fileName=4dffc01d-2一文搞定HashMap.md', 1, 1);
+INSERT INTO `book` VALUES (1, '格林童话', 'http://url.picture', '说书', '格林', 23, 1, 0, 2, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '清华大学出版社', '2020-05-05 00:49:37', '简介');
+INSERT INTO `book` VALUES (2, '安徒生童话', 'http://url.picture', '听书', '安徒生', 666, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '清华大学出版社', '2020-05-01 00:49:41', '简介');
+INSERT INTO `book` VALUES (3, 'xx', 'xx', 'xx', 'xx', 22, 112, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-07 00:49:45', '简介');
+INSERT INTO `book` VALUES (4, '安徒生童话', 'http://url.picture', '听书', '安徒生', 66, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (6, '安徒生童话12', 'http://url.picture', '听书', '安徒生', 3, 10, 0, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (7, '安徒生童话123', 'http://url.picture', '听书', '安徒生', 4, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:53', '简介');
+INSERT INTO `book` VALUES (8, '安徒生童话1234', 'http://url.picture', '听书', '安徒生', 22, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (9, '安徒生童话12345', 'http://url.picture', '听书', '安徒生', 32, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (10, '安徒生童话12345', 'http://url.picture', '听书', '安徒生', 33, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '工业出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (11, '安徒生童话123456', 'http://url.picture', '听书', '安徒生', 3, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '工业出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (12, '安徒生童话1234567', 'http://url.picture', '听书', '安徒生', 33, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '工业出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (13, 'test1', NULL, NULL, 'wqq', 14, NULL, NULL, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', 1, 1, '工业出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (14, 'tesqwqq', NULL, NULL, 'wqqw', NULL, NULL, NULL, 2, 'http://localhost:8081/bookResource/view/?fileName=4dffc01d-2一文搞定HashMap.md', 1, 1, '工业出版社', '2020-05-01 00:49:48', '简介');
 
 -- ----------------------------
 -- Table structure for bookcoupon
@@ -262,16 +265,18 @@ CREATE TABLE `expert`  (
   `ex_identity` varchar(18) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '专家身份证',
   `ex_typeid` int(11) NULL DEFAULT NULL COMMENT '专家类别',
   `is_review` tinyint(4) NULL DEFAULT 3 COMMENT '是否审核通过1：是  0：否，3：未审核',
+  `book_types` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '擅长的图书类别ids',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of expert
 -- ----------------------------
-INSERT INTO `expert` VALUES (1, '砖家', '123456', '李白', '14525525567', '地址', '324242456787654567', 1, 1);
-INSERT INTO `expert` VALUES (2, '专家164', '1234567', '张震', '141414', '我的地址', '2222222212112', 2, 3);
-INSERT INTO `expert` VALUES (5, '专家1', '12312', '瞅瞅', '234234', '往往', '23423423', 2, 0);
-INSERT INTO `expert` VALUES (6, 'test111', '123456', '任命', '13333341445', '郑州', '333333456789667567', 1, 3);
+INSERT INTO `expert` VALUES (1, '砖家', '123456', '李白', '14525525567', '地址', '324242456787654567', 1, 1, '2');
+INSERT INTO `expert` VALUES (2, '专家164', '1234567', '张震', '141414', '我的地址', '2222222212112', 2, 3, '1,2');
+INSERT INTO `expert` VALUES (5, '专家1', '12312', '瞅瞅', '234234', '往往', '23423423', 2, 0, '1,2');
+INSERT INTO `expert` VALUES (6, 'test111', '123456', '任命', '13333341445', '郑州', '333333456789667567', 1, 3, '1,2');
+INSERT INTO `expert` VALUES (7, '专家头子', '123456', '彭于晏', '15649860087', '郑州', '373838388383883838', 1, 3, '1,2');
 
 -- ----------------------------
 -- Table structure for experttype
@@ -355,16 +360,17 @@ CREATE TABLE `recommend`  (
   `re_expertid` int(11) NULL DEFAULT NULL COMMENT '审核的专家id',
   `re_status` tinyint(4) NULL DEFAULT NULL COMMENT '审核状态 0:未审核  1：已审核',
   `re_opinion` varchar(700) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '审核意见、结论',
+  `re_reason` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '推荐理由',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of recommend
 -- ----------------------------
-INSERT INTO `recommend` VALUES (1, 1, 1, 1, 1, 1, '还不错哈！！！！1');
-INSERT INTO `recommend` VALUES (2, 2, 2, 0, 2, 1, '书籍内容逻辑不通顺。');
-INSERT INTO `recommend` VALUES (3, 1, 1, NULL, 2, 0, '哎呦，不错哦');
-INSERT INTO `recommend` VALUES (4, 2, 1, NULL, 1, 0, 'sss');
+INSERT INTO `recommend` VALUES (1, 1, 1, 1, 1, 1, '还不错哈！！！！1', '内容不错，才推荐的');
+INSERT INTO `recommend` VALUES (2, 2, 2, 0, 2, 1, '书籍内容逻辑不通顺。', '内容不错，才推荐的');
+INSERT INTO `recommend` VALUES (3, 1, 1, NULL, NULL, 0, '哎呦，不错哦', '内容不错，才推荐的');
+INSERT INTO `recommend` VALUES (4, 2, 6, NULL, NULL, 0, 'sss', '内容不错，才推荐的');
 
 -- ----------------------------
 -- Table structure for select

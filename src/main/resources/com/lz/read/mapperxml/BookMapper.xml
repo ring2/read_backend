@@ -22,4 +22,20 @@
             and bookname like concat ('%',#{bookname},'%')
         </if>
     </select>
+    <select id="getNoReviewed" resultType="com.lz.read.pojo.vo.NoReviewedVO">
+        SELECT
+	u.username,
+	bookname,
+	bookauthor,
+	book_press,
+	press_time,
+	short_intro,
+	re_reason,
+	bt_name
+FROM
+	recommend r
+	JOIN book b ON r.re_status = 0 and r.re_bookid = b.id
+	JOIN `user` u ON r.re_readerid = u.userid
+	JOIN booktype type ON b.book_type_id = type.id;
+    </select>
 </mapper>

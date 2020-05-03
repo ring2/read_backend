@@ -24,6 +24,12 @@ public class RecommendController {
         return recommendService.getRecommendBook(reStatus, pageNum, pageSize);
     }
 
+    // 获取已审核的书籍
+    @GetMapping("/reviewed/{expertId}")
+    public RestResult getReviewedBooks(@PathVariable Integer expertId) {
+        return recommendService.getReviewedBooks(expertId);
+    }
+
     // 提交书籍审核意见、修改书籍审核结果
     @PutMapping
     public RestResult updateRecommend(@RequestBody Recommend recommend) {

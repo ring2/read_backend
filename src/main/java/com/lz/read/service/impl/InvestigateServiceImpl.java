@@ -62,6 +62,10 @@ public class InvestigateServiceImpl implements InvestigateService {
         return RestResult.success();
     }
 
+    /**
+     *
+     * @return 纯编码，不使用sql（不建议。。）
+     */
     @Override
     public RestResult<UserAnswerVo> getSituation() {
         UserAnswerVo userAnswerVo = new UserAnswerVo();
@@ -88,6 +92,10 @@ public class InvestigateServiceImpl implements InvestigateService {
         return RestResult.success(userAnswerVo);
     }
 
+    /**
+     *
+     * @return 采用sql
+     */
     @Override
     public RestResult<List<AnswerSituationVo>> getSituation1() {
         List<AnswerSituationVo> answerSituationVos = answerMapper.selAnswerSituation();

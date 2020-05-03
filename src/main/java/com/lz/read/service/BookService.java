@@ -52,4 +52,5 @@ public interface BookService {
 
     RestResult addBook(BookDto bookDto);
 
+    RestResult getNoReviewed();
 }

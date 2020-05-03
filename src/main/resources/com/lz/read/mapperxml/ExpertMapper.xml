@@ -15,4 +15,7 @@
     <!--@mbg.generated generated on Wed Apr 01 23:55:30 CST 2020.-->
     id, ex_username, ex_pwd, ex_name, ex_phone, ex_addr, ex_identity
   </sql>
+    <select id="getExpertIds" resultType="java.lang.Integer">
+      select id from expert where expert.book_types like concat('%',#{btId} ,'%');
+    </select>
 </mapper>

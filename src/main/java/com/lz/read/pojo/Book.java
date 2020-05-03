@@ -3,6 +3,8 @@ package com.lz.read.pojo;
 import javax.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 @Table(name = "book")
 public class Book {
@@ -79,4 +81,22 @@ public class Book {
      */
     @Column(name = "booktoken_id")
     private Integer bookTokenId;
+
+    /**
+     * 出版社
+     */
+    @Column(name = "book_press")
+    private String bookPress;
+
+    /**
+     * 出版时间
+     */
+    @Column(name = "press_time")
+    private Date pressTime;
+
+    /**
+     * 简介
+     */
+    @Column(name = "short_intro")
+    private String shortIntro;
 }

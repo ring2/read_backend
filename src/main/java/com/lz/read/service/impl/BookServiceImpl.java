@@ -12,6 +12,7 @@ import com.lz.read.pojo.Bookresource;
 import com.lz.read.pojo.Recommend;
 import com.lz.read.pojo.dto.BookDto;
 import com.lz.read.pojo.vo.BookVo;
+import com.lz.read.pojo.vo.NoReviewedVO;
 import com.lz.read.service.RecommendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class BookServiceImpl implements BookService {
         Integer bookResourceId = book.getBookResourceId();
         // 新增book
         Book book1 = new Book();
-        BeanUtil.copyProperties(book,book1);
+        BeanUtil.copyProperties(book, book1);
         bookMapper.updateByPrimaryKeySelective(book1);
         Bookresource bookresource = bookresourceMapper.selectByPrimaryKey(bookResourceId);
         bookresource.setBookId(book1.getId());
@@ -120,13 +121,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public RestResult getBooksByType(Integer bookTypeId,String isCharge, int pageNum, int pageSize) {
+    public RestResult getBooksByType(Integer bookTypeId, String isCharge, int pageNum, int pageSize) {
         Boolean charge = false;
         PageHelper.startPage(pageNum, pageSize);
         Example example = new Example(Book.class);
         Example.Criteria criteria = example.createCriteria();
-        if (StrUtil.isNotEmpty(isCharge)){
-            if (isCharge.equals("收费")){
+        if (StrUtil.isNotEmpty(isCharge)) {
+            if (isCharge.equals("收费")) {
                 charge = true;
             }
             criteria.andEqualTo("isCharge", charge);
@@ -138,7 +139,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public RestResult selRankForRead() {
-        PageHelper.startPage(1,10);
+        PageHelper.startPage(1, 10);
         Example example = new Example(Book.class);
         example.orderBy("bookreadnum").desc();
         List<Book> books = bookMapper.selectByExample(example);
@@ -149,7 +150,7 @@ public class BookServiceImpl implements BookService {
     public Integer insertBook(Book book) {
         bookMapper.insertSelective(book);
         Example example = new Example(Book.class);
-        example.createCriteria().andEqualTo("bookname",book.getBookname());
+        example.createCriteria().andEqualTo("bookname", book.getBookname());
         List<Book> books = bookMapper.selectByExample(example);
         Integer id = books.get(0).getId();
         return id;
@@ -162,12 +163,18 @@ public class BookServiceImpl implements BookService {
         Integer bookResourceId = bookDto.getBookResourceId();
         // 新增book
         Book book = new Book();
-        BeanUtil.copyProperties(bookDto,book);
+        BeanUtil.copyProperties(bookDto, book);
         Integer integer = insertBook(book);
         Bookresource bookresource = bookresourceMapper.selectByPrimaryKey(bookResourceId);
         bookresource.setBookId(integer);
         bookresourceMapper.updateByPrimaryKey(bookresource);
         return RestResult.success();
+    }
+
+    @Override
+    public RestResult getNoReviewed() {
+        List<NoReviewedVO> noReviewed = bookMapper.getNoReviewed();
+        return RestResult.success(noReviewed);
     }
 
 }

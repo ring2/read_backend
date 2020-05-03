@@ -97,4 +97,9 @@ public class BookController {
     public RestResult addBook(@RequestBody BookDto bookDto) {
         return bookService.addBook(bookDto);
     }
+
+    @GetMapping("/no_reviewed")
+    public RestResult noReviewed(){
+        return bookService.getNoReviewed();
+    }
 }
