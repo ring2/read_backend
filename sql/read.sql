@@ -11,7 +11,7 @@
  Target Server Version : 50712
  File Encoding         : 65001
 
- Date: 03/05/2020 16:06:29
+ Date: 09/05/2020 22:27:29
 */
 
 SET NAMES utf8mb4;
@@ -107,14 +107,14 @@ CREATE TABLE `book`  (
   `press_time` datetime(0) NULL DEFAULT NULL COMMENT '出版日期',
   `short_intro` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL COMMENT '简介',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = 'book表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin COMMENT = 'book表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
 INSERT INTO `book` VALUES (1, '格林童话', 'http://url.picture', '说书', '格林', 23, 1, 0, 2, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '清华大学出版社', '2020-05-05 00:49:37', '简介');
 INSERT INTO `book` VALUES (2, '安徒生童话', 'http://url.picture', '听书', '安徒生', 666, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '清华大学出版社', '2020-05-01 00:49:41', '简介');
-INSERT INTO `book` VALUES (3, 'xx', 'xx', 'xx', 'xx', 22, 112, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-07 00:49:45', '简介');
+INSERT INTO `book` VALUES (3, 'xx', 'xx', 'xx', 'xx1', 223, 112, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-07 00:49:45', '简介');
 INSERT INTO `book` VALUES (4, '安徒生童话', 'http://url.picture', '听书', '安徒生', 66, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:48', '简介');
 INSERT INTO `book` VALUES (6, '安徒生童话12', 'http://url.picture', '听书', '安徒生', 3, 10, 0, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:48', '简介');
 INSERT INTO `book` VALUES (7, '安徒生童话123', 'http://url.picture', '听书', '安徒生', 4, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '人民大学出版社', '2020-05-01 00:49:53', '简介');
@@ -125,6 +125,7 @@ INSERT INTO `book` VALUES (11, '安徒生童话123456', 'http://url.picture', '�
 INSERT INTO `book` VALUES (12, '安徒生童话1234567', 'http://url.picture', '听书', '安徒生', 33, 10, 1, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', NULL, 0, '工业出版社', '2020-05-01 00:49:48', '简介');
 INSERT INTO `book` VALUES (13, 'test1', NULL, NULL, 'wqq', 14, NULL, NULL, 1, 'http://localhost:8081/bookResource/view/?fileName=666e8d4f-e一文搞定HashMap.md', 1, 1, '工业出版社', '2020-05-01 00:49:48', '简介');
 INSERT INTO `book` VALUES (14, 'tesqwqq', NULL, NULL, 'wqqw', NULL, NULL, NULL, 2, 'http://localhost:8081/bookResource/view/?fileName=4dffc01d-2一文搞定HashMap.md', 1, 1, '工业出版社', '2020-05-01 00:49:48', '简介');
+INSERT INTO `book` VALUES (15, '123123', NULL, NULL, '123123', NULL, NULL, NULL, 1, 'http://localhost:8081/bookResource/view/?fileName=16353818-5论文提纲.md', NULL, 0, '1231231', '2020-05-12 00:00:00', '1231231');
 
 -- ----------------------------
 -- Table structure for bookcoupon
@@ -152,7 +153,7 @@ CREATE TABLE `bookresource`  (
   `rs_type` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '资源类型，类似于doc、ppt、pdf、MP3、wmv等常用格式',
   `book_id` int(11) NULL DEFAULT NULL COMMENT '相关联的图书id',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of bookresource
@@ -162,6 +163,7 @@ INSERT INTO `bookresource` VALUES (2, '7c337ba0-a一文搞定HashMap.md', NULL, 
 INSERT INTO `bookresource` VALUES (3, '3f558843-4一文搞定HashMap.md', NULL, 779, NULL, NULL);
 INSERT INTO `bookresource` VALUES (4, '4dffc01d-2一文搞定HashMap.md', NULL, 779, NULL, 14);
 INSERT INTO `bookresource` VALUES (5, '666e8d4f-e一文搞定HashMap.md', NULL, 779, '.md', 3);
+INSERT INTO `bookresource` VALUES (6, '16353818-5论文提纲.md', NULL, 2658, '.md', 15);
 
 -- ----------------------------
 -- Table structure for booktoken
@@ -193,7 +195,7 @@ CREATE TABLE `booktype`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '图书类别编号',
   `bt_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图书类别名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of booktype
@@ -266,17 +268,19 @@ CREATE TABLE `expert`  (
   `ex_typeid` int(11) NULL DEFAULT NULL COMMENT '专家类别',
   `is_review` tinyint(4) NULL DEFAULT 3 COMMENT '是否审核通过1：是  0：否，3：未审核',
   `book_types` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '擅长的图书类别ids',
+  `company_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '工作单位',
+  `job_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职称',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of expert
 -- ----------------------------
-INSERT INTO `expert` VALUES (1, '砖家', '123456', '李白', '14525525567', '地址', '324242456787654567', 1, 1, '2');
-INSERT INTO `expert` VALUES (2, '专家164', '1234567', '张震', '141414', '我的地址', '2222222212112', 2, 3, '1,2');
-INSERT INTO `expert` VALUES (5, '专家1', '12312', '瞅瞅', '234234', '往往', '23423423', 2, 0, '1,2');
-INSERT INTO `expert` VALUES (6, 'test111', '123456', '任命', '13333341445', '郑州', '333333456789667567', 1, 3, '1,2');
-INSERT INTO `expert` VALUES (7, '专家头子', '123456', '彭于晏', '15649860087', '郑州', '373838388383883838', 1, 3, '1,2');
+INSERT INTO `expert` VALUES (1, '砖家', '123456', '李白', '14525525567', '地址', '324242456787654567', 1, 1, '2', '郑州二七区', '教授');
+INSERT INTO `expert` VALUES (2, '专家164', '1234567', '张震', '141414', '我的地址', '2222222212112', 2, 3, '1,2', '郑州二七区', '讲师');
+INSERT INTO `expert` VALUES (5, '专家1', '12312', '瞅瞅', '234234', '往往', '23423423', 2, 0, '1,2', '郑州二七区', '教授');
+INSERT INTO `expert` VALUES (6, 'test111', '123456', '任命', '13333341445', '郑州', '333333456789667567', 1, 3, '1,2', '郑州二七区', '副教授');
+INSERT INTO `expert` VALUES (7, '专家头子', '123456', '彭于晏', '15649860087', '郑州', '373838388383883838', 1, 3, '1,2', '郑州二七区', '教授');
 
 -- ----------------------------
 -- Table structure for experttype
@@ -308,7 +312,7 @@ CREATE TABLE `paper`  (
   `pa_enddate` datetime(0) NULL DEFAULT NULL COMMENT '结束问卷日期',
   `pa_thankmsg` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '感谢信息',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of paper
@@ -369,8 +373,8 @@ CREATE TABLE `recommend`  (
 -- ----------------------------
 INSERT INTO `recommend` VALUES (1, 1, 1, 1, 1, 1, '还不错哈！！！！1', '内容不错，才推荐的');
 INSERT INTO `recommend` VALUES (2, 2, 2, 0, 2, 1, '书籍内容逻辑不通顺。', '内容不错，才推荐的');
-INSERT INTO `recommend` VALUES (3, 1, 1, NULL, NULL, 0, '哎呦，不错哦', '内容不错，才推荐的');
-INSERT INTO `recommend` VALUES (4, 2, 6, NULL, NULL, 0, 'sss', '内容不错，才推荐的');
+INSERT INTO `recommend` VALUES (3, 1, 1, 0, 1, 1, '哎呦，不错哦', '内容不错，才推荐的');
+INSERT INTO `recommend` VALUES (4, 2, 6, 0, 1, 0, '内容过于浮夸1', '内容不错，才推荐的');
 
 -- ----------------------------
 -- Table structure for select
@@ -435,13 +439,21 @@ CREATE TABLE `update_recommend_msg`  (
   `result` tinyint(1) NULL DEFAULT NULL COMMENT '结果',
   `opinion` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '意见',
   `is_read` tinyint(1) NULL DEFAULT NULL COMMENT '是否已经阅读过，0：false 1:true',
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `book_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `book_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `expert_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `expert_id` int(11) NULL DEFAULT NULL,
+  `user_id` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of update_recommend_msg
 -- ----------------------------
-INSERT INTO `update_recommend_msg` VALUES (1, 1, 1, '还不错', 1);
+INSERT INTO `update_recommend_msg` VALUES (1, 1, 1, '还不错', 1, '张三', '格林童话', '童话', '砖家', NULL, NULL);
+INSERT INTO `update_recommend_msg` VALUES (2, 6, 0, '内容过于浮夸', 1, '张三', '格林童话', '童话', '砖家', NULL, NULL);
+INSERT INTO `update_recommend_msg` VALUES (3, 6, 0, '内容过于浮夸1', 0, '张三', '格林童话', '童话', '砖家', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user
