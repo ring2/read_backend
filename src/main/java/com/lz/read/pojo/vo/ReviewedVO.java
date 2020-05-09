@@ -21,5 +21,7 @@ public class ReviewedVO {
     private Integer reResult;
     private String exName;
     private String reOpinion;
+    private String reReason;
+    private Integer reBookid;
     private Integer bookreadnum;
 }

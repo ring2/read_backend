@@ -68,5 +68,17 @@ public class Expert {
     @Column(name = "book_types")
     private String bookTypes;
 
+    /**
+     * 工作单位
+     */
+    @Column(name = "company_address")
+    private String companyAddress;
+
+    /**
+     * 职称
+     */
+    @Column(name = "job_title")
+    private String jobTitle;
+
 
 }

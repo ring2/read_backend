@@ -37,17 +37,17 @@ public class RecommendServiceImpl implements RecommendService {
     @Resource
     private UpdateRecommendMsgMapper updateRecommendMsgMapper;
 
+
     @Override
-    public RestResult getRecommendBook(Byte status, int pageNum, int pageSize) {
+    public RestResult getRecommendBook(Byte status, Integer expertId, int pageNum, int pageSize) {
         if (ObjectUtil.isNotEmpty(status)) {
             PageHelper.startPage(pageNum, pageSize);
-            List<ReviewedVO> reviewed = recommendMapper.getReviewed();
+            List<ReviewedVO> reviewed = recommendMapper.getReviewed(expertId);
             PageInfo pageInfo = new PageInfo(reviewed);
             return RestResult.success(pageInfo);
         }
         return RestResult.failureOfParam();
     }
-
 
     @Override
     public RestResult updateRecommend(Recommend recommend) {
@@ -56,8 +56,7 @@ public class RecommendServiceImpl implements RecommendService {
         if (ObjectUtil.isNotEmpty(recommend)) {
             int i = recommendMapper.updateByPrimaryKeySelective(recommend);
             if (i > 0) {
-                updateRecommendMsg.setBookId(recommend.getReBookid());
-                updateRecommendMsg.setOpinion(recommend.getReOpinion());
+                 updateRecommendMsg = updateRecommendMsgMapper.selSomethingInsertToUpdateRecommendMsg(recommend);
                 Byte reResult = recommend.getReResult();
                 updateRecommendMsg.setResult(recommend.getReResult() == 1);
                 updateRecommendMsg.setIsRead(false);

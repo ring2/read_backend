@@ -12,7 +12,18 @@
         id, re_readerid, re_bookid
     </sql>
     <select id="getRankByRecommendNum" resultType="com.lz.read.pojo.vo.RecommendVo">
-      select recommend.*,book.bookname ,count(1) rank from recommend JOIN book on recommend.re_bookid = book.id GROUP BY recommend.re_bookid ORDER BY rank desc
+     SELECT
+	recommend.*,
+	user.username bookname,
+	count( 1 ) rank
+FROM
+	recommend
+	JOIN book ON recommend.re_bookid = book.id
+	JOIN user on re_readerid = user.userid
+GROUP BY
+	recommend.re_bookid
+ORDER BY
+	rank DESC
     </select>
     <select id="getReviewed" resultType="com.lz.read.pojo.vo.ReviewedVO">
         SELECT
@@ -21,11 +32,16 @@
 	re_result,
 	ex_name,
 	re_opinion,
+	re_reason,
+	book.book_press,
+	book.press_time,
+	re_bookid,
+	short_intro,
 	recommend.id id
 FROM
 	recommend
 	JOIN expert ON recommend.re_status = 0
-	AND recommend.re_expertid = expert.id
+	AND recommend.re_expertid = expert.id and expert.id = #{expertId}
 	JOIN `user` ON recommend.re_readerid = `user`.userid
 	JOIN book ON recommend.re_bookid = book.id
     </select>
@@ -40,7 +56,8 @@ FROM
 	re_reason,
 	bt_name,
 	bookreadnum,
-	re_result
+	re_result,
+	re_opinion
 FROM
 	recommend r
 	JOIN book b ON (r.re_result = 1 or r.re_result = 0) and r.re_expertid = #{expertId} and r.re_bookid = b.id

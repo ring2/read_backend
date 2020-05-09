@@ -53,9 +53,11 @@ public class BookServiceImpl implements BookService {
         Book book1 = new Book();
         BeanUtil.copyProperties(book, book1);
         bookMapper.updateByPrimaryKeySelective(book1);
-        Bookresource bookresource = bookresourceMapper.selectByPrimaryKey(bookResourceId);
-        bookresource.setBookId(book1.getId());
-        bookresourceMapper.updateByPrimaryKey(bookresource);
+        if (bookResourceId != null) {
+            Bookresource bookresource = bookresourceMapper.selectByPrimaryKey(bookResourceId);
+            bookresource.setBookId(book1.getId());
+            bookresourceMapper.updateByPrimaryKey(bookresource);
+        }
         return RestResult.success();
     }
 

@@ -14,7 +14,7 @@ public interface RecommendService{
     /**
      *  查看专家已审核或未审核的书籍，
      */
-    public RestResult getRecommendBook(Byte status,int pageNum,int pageSize);
+    public RestResult getRecommendBook(Byte status,Integer expertId,int pageNum,int pageSize);
 
     /**
      *  修改recommend相关信息：审核状态、审核意见等

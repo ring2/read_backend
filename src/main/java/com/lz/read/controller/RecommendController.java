@@ -19,9 +19,9 @@ public class RecommendController {
     RecommendService recommendService;
 
     // 根据审核状态获取推荐的书籍
-    @GetMapping("/list/{reStatus}/{pageNum}/{pageSize}")
-    public RestResult getRecommendBookByStatus(@PathVariable Byte reStatus, @PathVariable int pageNum, @PathVariable int pageSize) {
-        return recommendService.getRecommendBook(reStatus, pageNum, pageSize);
+    @GetMapping("/list/{reStatus}/{expertId}/{pageNum}/{pageSize}")
+    public RestResult getRecommendBookByStatus(@PathVariable Byte reStatus, @PathVariable Integer expertId,@PathVariable int pageNum, @PathVariable int pageSize) {
+        return recommendService.getRecommendBook(reStatus, expertId,pageNum, pageSize);
     }
 
     // 获取已审核的书籍

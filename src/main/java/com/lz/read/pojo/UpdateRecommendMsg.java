@@ -12,15 +12,33 @@ public class UpdateRecommendMsg {
     private Integer id;
 
     /**
-     * 书籍id
+     * 书名
      */
-    @Column(name = "book_id")
-    private Integer bookId;
+    @Column(name = "book_name")
+    private String bookName;
+
+    /**
+     * 读者名
+     */
+    @Column(name = "username")
+    private String username;
+
+    /**
+     * 专家名
+     */
+    @Column(name = "expert_Name")
+    private String expertName;
+
+    /**
+     * 书籍类别
+     */
+    @Column(name = "book_type")
+    private String bookType;
 
     /**
      * 结果
      */
-    @Column(name = "`result`")
+    @Column(name = "result")
     private Boolean result;
 
     /**

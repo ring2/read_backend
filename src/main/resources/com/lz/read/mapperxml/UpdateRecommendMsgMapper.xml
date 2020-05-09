@@ -12,4 +12,21 @@
     <!--@mbg.generated generated on Tue Apr 21 20:46:05 CST 2020.-->
     id, book_id, `result`, opinion
   </sql>
+  <select id="selSomethingInsertToUpdateRecommendMsg" resultType="com.lz.read.pojo.UpdateRecommendMsg">
+    SELECT
+	bookname book_name,
+	bt_name book_type,
+	ex_name expert_name,
+	username
+FROM
+	recommend
+	JOIN book
+on
+recommend.id = #{recommendMsg.id}
+and
+	book.id = #{recommendMsg.reBookid}
+	JOIN booktype ON booktype.id = book.book_type_id
+	JOIN expert ON expert.id = #{recommendMsg.reExpertId}
+	JOIN `user` ON `user`.userid = #{recommendMsg.reReaderid}
+  </select>
 </mapper>
