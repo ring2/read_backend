@@ -7,8 +7,12 @@ spring:
   devtools:
     restart:
       enabled: true
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
 server:
-  port: 8081
+  port: 8087
 pagehelper:
   helperDialect: mysql
   reasonable: true
@@ -25,4 +29,4 @@ mybatis:
     map-underscore-to-camel-case: true
   mapper-locations: classpath*:com/lz/read/mapperxml/*.xml
 file:
-  url: E:\\CET-4\\upload\\
+  url: E:\\read\\src\\main\\resources\\static\\

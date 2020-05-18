@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
@@ -66,7 +67,8 @@ public class BookResourceController {
         }
         FileOutputStream fileOutputStream = new FileOutputStream(outFile);
         FileCopyUtils.copy(inputStream, fileOutputStream);
-        String url = "http://localhost:8081/bookResource/view/?fileName=" + newFileName;
+        //http://localhost:8087/bookResource/view/?fileName=
+        String url = "http://localhost:8087/static/" + newFileName;
         String ex = originalFilename.substring(originalFilename.lastIndexOf("."));
         // 新增BookResource
         Bookresource bookresource = new Bookresource();
@@ -85,7 +87,7 @@ public class BookResourceController {
     }
 
     @GetMapping("/view")
-    public String viewFile(@RequestParam String fileName) throws IOException {
+    public String viewFile(@RequestParam String fileName, HttpServletResponse response) throws IOException {
         String filePath = fileContent + fileName;
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(new File(filePath)));
         StringBuilder sb = new StringBuilder();

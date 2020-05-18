@@ -18,4 +18,5 @@ public interface InvestigateService {
     RestResult<UserAnswerVo> getSituation();
     RestResult<List<AnswerSituationVo>> getSituation1();
 
+    RestResult delete(Integer id);
 }

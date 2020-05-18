@@ -9,6 +9,7 @@ import lombok.Data;
  **/
 @Data
 public class AnswerSituationVo {
+    private Integer id;
     private String question;
     private Integer peopleNum;
     private Float avg;

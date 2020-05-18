@@ -1,4 +1,4 @@
-package com.lz.read.config;
+package com.lz.read.service.task;
 
 import com.lz.read.service.impl.RecommendSchedule;
 import lombok.extern.slf4j.Slf4j;

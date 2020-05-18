@@ -85,6 +85,12 @@ public class Book {
     /**
      * 出版社
      */
+    @Column(name = "bookIntroduction")
+    private String bookIntroduction;
+
+    /**
+     * 出版社
+     */
     @Column(name = "book_press")
     private String bookPress;
 
@@ -97,6 +103,20 @@ public class Book {
     /**
      * 简介
      */
+    @Column(name = "booktype")
+    private String bookType;
+
+    /**
+     * 简介
+     */
+    @Column(name = "createtime")
+    private Date createTime;
+
+
+    /**
+     * 简介
+     */
     @Column(name = "short_intro")
     private String shortIntro;
+
 }

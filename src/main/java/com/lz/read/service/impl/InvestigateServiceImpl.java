@@ -56,7 +56,7 @@ public class InvestigateServiceImpl implements InvestigateService {
         Question question = new Question();
         question.setQueTitle(investigateDto.getTitle());
         question.setQueDirection(investigateDto.getQuestion());
-        question.setQueType(investigateDto.getQuestionType());
+        question.setQueType(investigateDto.getQuestionType().substring(0,3));
         question.setQuePaperid(paper1.getId());
         questionMapper.insertSelective(question);
         return RestResult.success();
@@ -100,5 +100,11 @@ public class InvestigateServiceImpl implements InvestigateService {
     public RestResult<List<AnswerSituationVo>> getSituation1() {
         List<AnswerSituationVo> answerSituationVos = answerMapper.selAnswerSituation();
         return RestResult.success(answerSituationVos);
+    }
+
+    @Override
+    public RestResult delete(Integer id) {
+         questionMapper.deleteByPrimaryKey(id);
+        return RestResult.success();
     }
 }

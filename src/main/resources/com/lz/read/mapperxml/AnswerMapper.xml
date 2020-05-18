@@ -12,8 +12,8 @@
         id, ans_readerid, ans_selectid
     </sql>
     <select id="selAnswerSituation" resultType="com.lz.read.pojo.vo.AnswerSituationVo">
-      select q.que_direction question,count(*) peopleNum,AVG(a.ans_score) avg
+      select q.id, q.que_direction question,count(*) peopleNum,AVG(a.ans_score) avg
       ,MAX(a.ans_score) max,MIN(a.ans_score) min
-      from question q join answer a on q.que_type = '单选题' and a.ans_questionid = q.id group by q.id
+      from question q left join answer a on a.ans_questionid = q.id group by q.id
     </select>
 </mapper>

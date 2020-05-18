@@ -4,12 +4,17 @@ import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lz.read.common.RestResult;
+import com.lz.read.dao.BooktokenMapper;
 import com.lz.read.dao.RecommendMapper;
 import com.lz.read.dao.UpdateRecommendMsgMapper;
+import com.lz.read.dao.UserBooktokenRelMapper;
+import com.lz.read.pojo.Booktoken;
 import com.lz.read.pojo.Recommend;
 import com.lz.read.pojo.UpdateRecommendMsg;
+import com.lz.read.pojo.UserBooktokenRel;
 import com.lz.read.pojo.vo.ReviewedVO;
 import com.lz.read.service.RecommendService;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
@@ -37,6 +42,12 @@ public class RecommendServiceImpl implements RecommendService {
     @Resource
     private UpdateRecommendMsgMapper updateRecommendMsgMapper;
 
+    @Resource
+    private UserBooktokenRelMapper userBooktokenRelMapper;
+
+    @Resource
+    private BooktokenMapper booktokenMapper;
+
 
     @Override
     public RestResult getRecommendBook(Byte status, Integer expertId, int pageNum, int pageSize) {
@@ -54,6 +65,15 @@ public class RecommendServiceImpl implements RecommendService {
         UpdateRecommendMsg updateRecommendMsg = new UpdateRecommendMsg();
 
         if (ObjectUtil.isNotEmpty(recommend)) {
+            Byte result11 = recommend.getReResult();
+            if (ObjectUtil.isNotEmpty(result11)){
+                Integer userId = recommend.getReReaderid();
+                UserBooktokenRel userBooktokenRel = new UserBooktokenRel();
+                userBooktokenRel.setUserId(userId);
+                List<Booktoken> booktokens = booktokenMapper.selectAll();
+                userBooktokenRel.setBookTokenId(booktokens.get(0).getId());
+                userBooktokenRelMapper.insert(userBooktokenRel);
+            }
             int i = recommendMapper.updateByPrimaryKeySelective(recommend);
             if (i > 0) {
                  updateRecommendMsg = updateRecommendMsgMapper.selSomethingInsertToUpdateRecommendMsg(recommend);

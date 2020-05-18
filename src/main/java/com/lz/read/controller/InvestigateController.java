@@ -5,6 +5,7 @@ import com.lz.read.pojo.dto.InvestigateDto;
 import com.lz.read.pojo.vo.AnswerSituationVo;
 import com.lz.read.pojo.vo.UserAnswerVo;
 import com.lz.read.service.InvestigateService;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +38,10 @@ public class InvestigateController {
     @GetMapping("/situation1")
     public RestResult<List<AnswerSituationVo>> getSituation1(){
         return investigateService.getSituation1();
+    }
+
+    @DeleteMapping("/{id}")
+    public RestResult delete(@PathVariable Integer id) {
+        return investigateService.delete(id);
     }
 }
